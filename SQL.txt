@@ -1,0 +1,99 @@
+Employees table includes these columns:
+
+ID: Unique identifier (integer)
+Name: Employee's name (varchar)
+Position: Job title (varchar)
+Salary: Employee's salary (decimal)
+Department: Department of the employee (varchar)
+
+Create Table
+CREATE TABLE Employees (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Position VARCHAR(50),
+    Salary DECIMAL(10, 2),
+    Department VARCHAR(50)
+);
+
+
+Insert into
+INSERT INTO Employees (ID, Name, Position, Salary, Department)
+VALUES (1, 'John Doe', 'Manager', 75000.00, 'Sales'),
+       (2, 'Jane Smith', 'Analyst', 60000.00, 'Marketing');
+
+retrieve data
+SELECT * FROM Employees;
+SELECT Name, Salary FROM Employees;
+
+where
+SELECT * FROM Employees WHERE Department = 'Sales';
+
+Update
+UPDATE Employees
+SET Salary = 80000
+WHERE ID = 1;
+
+Delete
+DELETE FROM Employees
+WHERE ID = 2;
+
+Alter Table
+ALTER TABLE Employees
+ADD HireDate DATE;
+ALTER TABLE Employees
+DROP COLUMN HireDate;
+
+Drop table
+DROP TABLE Employees;
+
+Create Index
+CREATE INDEX idx_department ON Employees (Department);
+
+joins
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(50)
+);
+
+SELECT Employees.Name, Employees.Position, Departments.DepartmentName
+FROM Employees
+JOIN Departments
+ON Employees.Department = Departments.DepartmentID;
+
+Group By
+SELECT Department, AVG(Salary) AS AverageSalary
+FROM Employees
+GROUP BY Department;
+
+Having
+SELECT Department, AVG(Salary) AS AverageSalary
+FROM Employees
+GROUP BY Department
+HAVING AVG(Salary) > 60000;
+
+Order by
+SELECT * FROM Employees
+ORDER BY Salary DESC;
+
+Union 
+SELECT Name FROM Employees
+WHERE Department = 'Sales'
+UNION
+SELECT Name FROM Employees
+WHERE Department = 'Marketing';
+
+Truncate
+TRUNCATE TABLE Employees;
+
+
+COUNT, SUM, AVG, MIN, MAX
+SELECT COUNT(*) FROM Employees;
+SELECT AVG(Salary) FROM Employees;
+SELECT SUM(Salary) FROM Employees;
+SELECT MIN(Salary) FROM Employees;
+SELECT MAX(Salary) FROM Employees;
+
+Rename
+ALTER TABLE Employees RENAME TO Staff;
+
+
